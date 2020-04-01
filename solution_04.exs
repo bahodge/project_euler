@@ -6,11 +6,13 @@ defmodule Solution04 do
   """
 
   def solve(ceiling, floor), do: solve(ceiling, floor, [])
-  def solve(floor, floor, palindromes), do: Enum.max(palindromes) |> List.first() # Final answer
+  # Final answer
+  def solve(floor, floor, palindromes), do: Enum.max(palindromes) |> List.first()
+
   def solve(ceiling, floor, palindromes) do
     results = get_palindromes(ceiling, floor)
 
-    solve(ceiling - 1, floor, [ results | palindromes])
+    solve(ceiling - 1, floor, [results | palindromes])
   end
 
   def get_palindromes(ceiling, floor) do
@@ -50,5 +52,7 @@ end
 ceiling = 999
 floor = 100
 {time, result} = :timer.tc(fn -> Solution04.solve(ceiling, floor) end)
-IO.inspect(result) # 906609
-IO.inspect("#{time / 1000} ms") # 545.721 ms
+# 906609
+IO.inspect(result)
+# 545.721 ms
+IO.inspect("#{time / 1000} ms")
