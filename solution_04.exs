@@ -15,7 +15,7 @@ defmodule Solution04 do
     solve(ceiling - 1, floor, [results | palindromes])
   end
 
-  def get_palindromes(ceiling, floor) do
+  defp get_palindromes(ceiling, floor) do
     multiply_range(ceiling, floor) |> filter_palindromes()
   end
 
@@ -36,7 +36,7 @@ defmodule Solution04 do
     end
   end
 
-  def is_palindrome?(number) do
+  defp is_palindrome?(number) do
     split_int =
       Integer.to_string(number) |> String.split("") |> Enum.filter(fn char -> char != "" end)
 
