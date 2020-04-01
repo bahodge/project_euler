@@ -35,5 +35,5 @@ end
 end
 
 {time, result} = :timer.tc(fn -> Solution03.solve() end)
-IO.puts(result)             # 4613732
-IO.puts("#{time / 1000} ms")  # 2.681 ms
+IO.puts(result) # 4613732
+IO.puts("#{time / 1000} ms") # 2.681 ms

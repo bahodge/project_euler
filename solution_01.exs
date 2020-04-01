@@ -18,5 +18,5 @@ defmodule Solution01 do
 end
 
 {time, result} = :timer.tc(fn -> Solution01.solve(1000) end)
-IO.puts(result)             # 233168
-IO.puts("#{time / 1000} ms")  # 0.428 ms
+IO.puts(result) # 233168
+IO.puts("#{time / 1000} ms") # 0.428 ms
