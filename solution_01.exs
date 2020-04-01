@@ -17,5 +17,6 @@ defmodule Solution01 do
   defp multiple_of_five(x), do: rem(x, 5) == 0
 end
 
-Solution01.solve(1000)
-|> IO.inspect()
+{time, result} = :timer.tc(fn -> Solution01.solve(1000) end)
+IO.puts(result)             # 233168
+IO.puts("#{time / 1000} ms")  # 0.428 ms
