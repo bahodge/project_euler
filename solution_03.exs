@@ -15,7 +15,7 @@ defmodule Solution03 do
     # IO.inspect("(#{n}, #{factor}) -> rem: #{rem(n, factor)} == 0 -> #{rem(n, factor) == 0}")
 
     case rem(n, factor) do
-      # If 0 it is not prime
+      # If 0 it is not prime+
       # Divide n by factor
       # Call again
       0 -> nth(div(n, factor), factor)
