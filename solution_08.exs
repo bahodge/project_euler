@@ -37,14 +37,13 @@ defmodule Solution08 do
   end
 
   defp multiply_list(list) do
-    list
-    |> Enum.reduce(1, fn num, acc -> num * acc end)
+    list |> Enum.reduce(1, &(&1 * &2))
   end
 
   defp string_to_int_list(str) do
     str
     |> String.graphemes()
-    |> Enum.map(fn char -> String.to_integer(char) end)
+    |> Enum.map(&String.to_integer/1)
   end
 end
 
