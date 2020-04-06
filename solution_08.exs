@@ -18,14 +18,12 @@ defmodule Solution08 do
   defp multiply_list(list) do
     list
     |> Enum.reduce(1, fn (num, acc) -> num * acc end )
-
   end
 
 
   defp string_to_int_list(str) do
     str
-    |> String.split("") # make into list
-    |> Enum.filter(&(&1 != "")) # strip ""
+    |> String.graphemes()
     |> Enum.map(fn char -> String.to_integer(char) end) # make ints
   end
 end
