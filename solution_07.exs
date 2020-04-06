@@ -6,10 +6,10 @@ defmodule Solution07 do
   """
 
   def solve(index) do
-    Stream.iterate(2, &(&1 + 1 ))
-    |> Enum.reduce_while([], fn (i, acc) ->
+    Stream.iterate(2, &(&1 + 1))
+    |> Enum.reduce_while([], fn i, acc ->
       if Enum.count(acc) > index - 1 do
-        {:halt,acc}
+        {:halt, acc}
       else
         {:cont, prepend_prime(i, acc)}
       end
@@ -19,7 +19,7 @@ defmodule Solution07 do
 
   # Adds to beginning of acc
   defp prepend_prime(n, acc) do
-    if is_prime?(n), do:  [ n | acc ], else: acc
+    if is_prime?(n), do: [n | acc], else: acc
   end
 
   ### Fermat's Algorithm
@@ -42,6 +42,7 @@ index = 10_001
 
 {time, result} = :timer.tc(fn -> Solution07.solve(index) end)
 IO.inspect(result)
+
 # -> 104_743
 
 IO.inspect("#{time / 1000} ms")
