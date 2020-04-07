@@ -11,12 +11,14 @@ defmodule Solution08 do
     |> sum_list()
   end
 
-  defp sum_list(list), do: list |> Enum.reduce(0, &(&1 + &2))
+  defp sum_list(list), do: list |> Enum.reduce(2, &(&1 + &2))
 
   defp get_primes(upper_limit) do
-    2..upper_limit
-    |> Enum.filter(&is_prime?/1)
+    3..upper_limit
+    |> Enum.filter(&(odd?(&1) && is_prime?(&1)))
   end
+
+  defp odd?(integer), do: rem(integer, 2) != 0
 
   defp is_prime?(n) when n in [2, 3], do: true
 
@@ -37,4 +39,4 @@ IO.inspect(result)
 # -> 142_913_828_922
 
 IO.inspect("#{time / 1000} ms")
-# -> 11629.909 ms
+# -> 10840.023 ms
