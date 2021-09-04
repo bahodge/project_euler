@@ -1,4 +1,21 @@
-use std::time::Instant;
+/*
+    Problem #5
+
+    2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+    What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+*/
+
+fn solve(floor: i32, ceiling: i32) -> i32 {
+    let mut factors = find_primes(ceiling);
+
+    for v in floor..ceiling {
+        let prime_factors = prime_factors(v);
+        factors = intersect_vectors(factors, prime_factors)
+    }
+
+    factors.into_iter().fold(floor, |acc, value| acc * value)
+}
 
 fn is_prime(target: i32) -> bool {
     if target <= 1 {
@@ -54,29 +71,14 @@ fn intersect_vectors(mut left: Vec<i32>, mut right: Vec<i32>) -> Vec<i32> {
     return left;
 }
 
-pub fn solve() {
-    let start = Instant::now();
+pub fn exec() -> String {
+    solve(1, 20).to_string()
+}
 
-    /*
-        Problem #5
-
-        2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-
-        What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-    */
-
-    const CEILING: i32 = 20;
-    const FLOOR: i32 = 1;
-
-    let mut factors = find_primes(CEILING);
-
-    for v in FLOOR..CEILING {
-        let prime_factors = prime_factors(v);
-        factors = intersect_vectors(factors, prime_factors)
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn smallest_divisible_number() {
+        assert_eq!(2520, super::solve(1, 10));
     }
-
-    let result = factors.into_iter().fold(FLOOR, |acc, value| acc * value);
-
-    let duration = start.elapsed();
-    println!("problem_5: {}, time: {:?}", result, duration);
 }

@@ -1,4 +1,28 @@
-use std::time::Instant;
+/*
+Problem #4
+
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+
+Find the largest palindrome made from the product of two 3-digit numbers.
+*/
+fn solve(floor: i32, ceiling: i32) -> i32 {
+    let mut result: i32 = 0;
+
+    for i in (floor..=ceiling).rev() {
+        for j in (floor..=ceiling).rev() {
+            let product = i * j;
+            let s = String::from(product.to_string());
+            if product > result && is_palindrome(&s) {
+                result = product;
+                break;
+            } else if result > product {
+                break;
+            }
+        }
+    }
+
+    result
+}
 
 fn is_palindrome(phrase: &str) -> bool {
     if phrase.len() == 0 || phrase.len() == 1 {
@@ -18,32 +42,14 @@ fn is_palindrome(phrase: &str) -> bool {
     true
 }
 
-pub fn solve() {
-    let start = Instant::now();
+pub fn exec() -> String {
+    solve(100, 999).to_string()
+}
 
-    /*
-      Problem #4
-
-      A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
-
-      Find the largest palindrome made from the product of two 3-digit numbers.
-    */
-
-    let mut result: i32 = 0;
-
-    for i in (100..999).rev() {
-        for j in (100..999).rev() {
-            let product = i * j;
-            let s = String::from(product.to_string());
-            if product > result && is_palindrome(&s) {
-                result = product;
-                break;
-            } else if result > product {
-                break;
-            }
-        }
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn returns_the_largest_palindromic_number() {
+        assert_eq!(9009, super::solve(10, 99));
     }
-
-    let duration = start.elapsed();
-    println!("problem_4: {}, time: {:?}", result, duration);
 }
