@@ -23,6 +23,6 @@ fn main() {
     solvers.push(Solver::new(problem_5));
 
     for solver in solvers.into_iter() {
-        solver.run()
+        solver.exec()
     }
 }

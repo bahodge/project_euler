@@ -27,7 +27,7 @@ impl Solver {
         Solver { problem }
     }
 
-    pub fn run(&self) {
+    pub fn exec(&self) {
         let start = Instant::now();
 
         let result = self.problem.exec();
